@@ -1,6 +1,7 @@
 <script>
 	import VoteIcon from '$lib/assets/vote.webp';
 	import SelectField from './SelectField.svelte';
+	import SelectLanguage from './SelectLanguage.svelte';
 </script>
 
 <header class="w-full pt-0 pb-2 bg-[#f4f4f4]">
@@ -18,7 +19,8 @@
 	</div>
 </header>
 <div
-	class=" sticky z-[100] w-full shadow-[inset_0_-2px_4px_rgba(0,0,0,0.1)] bg-[#f4f4f4] top-0 pt-3"
+	class=" flex place-content-center sticky z-[100] w-full shadow-[inset_0_-2px_4px_rgba(0,0,0,0.1)] bg-[#f4f4f4] top-0 pt-3"
 >
 	<SelectField />
+	<SelectLanguage />
 </div>

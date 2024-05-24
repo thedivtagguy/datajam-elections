@@ -16,7 +16,7 @@
 	import GenericField from './GenericField.svelte';
 	import { Button as SvelteUXButton } from 'svelte-ux';
 	import { mdiCrosshairsGps } from '@mdi/js';
-
+	import * as m from "$msgs";
 	export let onLoadData = [];
 	$: results = $selectedConstituency;
 
@@ -36,7 +36,7 @@
 </script>
 
 {#if results && Object.keys(results).length > 0}
-	{@const baseURl = results.recontesting ? 'LokSabha2024' : 'LokSabha2019'}
+	{@const baseURl = results.recontesting ? m.lokSabha2024() : m.lokSabha2019()}
 	<section
 		in:fade={{ duration: 300, easing: cubicInOut }}
 		class="relative flex flex-col justify-between w-full min-h-[750px] h-full px-6 py-4 rounded-md bg-surface-200"
@@ -51,16 +51,16 @@
 					>
 						{results.party_x}</span
 					>
-					<span class="pl-4 -mt-2 font-mono text-sm font-bold"> Sitting MP </span>
+					<span class="pl-4 -mt-2 font-mono text-sm font-bold"> {m.sittingMP()} </span>
 				</div>
 
 				<div class="block -mt-2">
 					{#if !results.attendance}
 						<span class="inline-flex items-center justify-center font-sans text-xs font-normal 2">
-							This MP's data has different availability
+							{m.mpDiffAvailability()}
 							<InfoPopover
 								width="10rem"
-								text="This MP was a minister. Ministers represent the government in parliament, so their participation is not reported."
+								text={m.mpRepresentsGovernment()}
 							/>
 						</span>
 					{/if}
@@ -73,7 +73,7 @@
 						{results.candidate}
 					</h2>
 					{#if results.recontesting}
-						<InfoPopover icon={mdiBankCheck} text="MP is recontesting in 2024" />
+						<InfoPopover icon={mdiBankCheck} text={m.mpRecontesting2024()} />
 					{/if}
 				</div>
 
@@ -89,42 +89,42 @@
 					class="grid items-start border-b-[1px] border-neutral-100 pb-4 justify-start w-full grid-flow-row grid-cols-7 gap-4 my-4"
 				>
 					<GenericField
-						title="Education"
+						title={m.education()}
 						value={results.education_x}
-						infoPopOverText={'Education level as per 2019 affidavit'}
+						infoPopOverText={m.educationLevel2019()}
 						cols={2}
 					/>
 					<GenericField
-						title="Age"
+						title={m.age()}
 						value={formatAge(results.age_y)}
-						infoPopOverText={'Age as of 2024'}
+						infoPopOverText={m.age2024()}
 						cols={2}
 					/>
 					<AttendanceMarker value={results.attendance} cols={3} />
 					<GenericField
 						title={`${
 							Number(results.criminal_cases) === 0
-								? 'Criminal Cases'
+								? m.criminalCases()
 								: results.criminal_cases > 1
-									? 'Criminal Cases'
-									: 'Criminal Case'
+									? m.criminalCases()
+									: m.criminalCase()
 						}`}
 						value={results.criminal_cases}
-						infoPopOverText={'Declared criminal cases as per 2019 affidavit'}
+						infoPopOverText={m.declaredCriminalCases2019()}
 						cols={2}
 					/>
 
 					<GenericField
-						title={'Assets (2019)'}
-						infoPopOverText={'Declared value of assets owned as per 2019 affidavit'}
+						title={m.assets2019()}
+						infoPopOverText={m.declaredAssetsNineteen()}
 						value={formatRupee(results.total_assets)}
 						cols={2}
 					/>
 
 					{#if results.end_total_assets}
 						<GenericField
-							title={'Assets (2024)'}
-							infoPopOverText={'Declared value of assets owned as per 2024 affidavit'}
+							title={m.assets2024()}
+							infoPopOverText={m.declaredAssetsTwentyFour()}
 							value={formatRupee(results.end_total_assets)}
 							cols={2}
 						/>
@@ -139,8 +139,7 @@
 		</div>
 		<div class="flex items-center justify-between w-full gap-2 align-bottom">
 			<span class="text-[0.6rem] md:max-w-[300px] text-neutral-500"
-				>Neta details from 2019 and 2024 election affidavits (MyNeta). Parliament activity from
-				2019-2024 Lok Sabha sessions (PRS India).</span
+				>{m.netaDetails20192024()}</span
 			>
 
 			<div class="align-start">
@@ -161,13 +160,12 @@
 		{#if onLoadData.length !== 0}
 			<div in:fade={{ duration: 300 }}>
 				<h2 class="text-3xl text-left">
-					Choose a constituency in <span class="inline-block font-bold"
+					{m.chooseConstituency()} <span class="inline-block font-bold"
 						>{onLoadData[0]?.state_ut_name}</span
 					>
 				</h2>
 				<p class="py-2 text-left text-md text-neutral-500">
-					and see your sitting MLA's declared assets, criminal cases, and attendance — or explore
-					candidates contesting in the 2024 Lok Sabha elections.
+					{m.mlaCandidatesDeclaredItems()}
 				</p>
 
 				<div class="flex flex-wrap max-w-sm gap-2">
@@ -190,7 +188,7 @@
 						icon={mdiCrosshairsGps}
 						classes={{ root: ' bg-primary text-white ' }}
 					>
-						Locate me
+						{m.locateMe()}
 					</SvelteUXButton>
 				</div>
 			</div>

@@ -9,7 +9,7 @@
 		mdiImageFilterCenterFocus,
 		mdiCrosshairsGps
 	} from '@mdi/js';
-
+	import * as m from "$msgs";
 	type Placement =
 		| 'top-left'
 		| 'top'
@@ -43,35 +43,35 @@
 		}[placement]
 	)}
 >
-	<Tooltip title="Zoom in">
+	<Tooltip title={m.zoomIn()}>
 		<Button
 			icon={mdiMagnifyPlusOutline}
 			on:click={() => transform.zoomIn()}
 			class="p-2 text-surface-content/50"
 		/>
 	</Tooltip>
-	<Tooltip title="Zoom out">
+	<Tooltip title={m.zoomOut()}>
 		<Button
 			icon={mdiMagnifyMinusOutline}
 			on:click={() => transform.zoomOut()}
 			class="p-2 text-surface-content/50"
 		/>
 	</Tooltip>
-	<Tooltip title="Center">
+	<Tooltip title={m.center()}>
 		<Button
 			icon={mdiImageFilterCenterFocus}
 			on:click={() => transform.translateCenter()}
 			class="p-2 text-surface-content/50"
 		/>
 	</Tooltip>
-	<Tooltip title="Locate me">
+	<Tooltip title={m.locateMe()}>
 		<Button
 			icon={mdiCrosshairsGps}
 			on:click={() => locateMe()}
 			class="p-2 text-surface-content/50"
 		/>
 	</Tooltip>
-	<Tooltip title="Reset">
+	<Tooltip title={m.reset()}>
 		<Button
 			icon={mdiArrowULeftTop}
 			on:click={() => transform.reset()}

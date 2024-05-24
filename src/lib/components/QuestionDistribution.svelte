@@ -14,6 +14,7 @@
 		TooltipItem,
 		Text
 	} from 'layerchart';
+	import * as m from "$msgs";
 	export let questionKey = 'environment_forest_and_climate_change';
 	export let candidate = 'Dharambir Singh';
 
@@ -49,7 +50,7 @@
 
 <div>
 	{#if binQuestions.length === 0}
-		<p>No data available</p>
+		<p>{m.noDataAvailable()}</p>
 	{/if}
 	<div class="p-4 mb-6 md:mb-0" style:height="250px">
 		<Chart
@@ -79,7 +80,7 @@
 					dx={75}
 					dy={25}
 					width={280}
-					value=" 🟧  Selected candidate"
+					value={m.selectedCandidate()}
 					anchor="center"
 					class="text-[#E8845A] text-xs font-medium"
 				></Text>
@@ -87,7 +88,7 @@
 				<Text
 					y={234}
 					width={280}
-					value=" No. of questions raised"
+					value={m.numberOfQuestions()}
 					anchor="center"
 					class="text-[#E8845A]  text-[0.6rem] font-mono font-medium"
 				></Text>
@@ -95,7 +96,7 @@
 					x={6}
 					y={25}
 					width={280}
-					value=" MPs"
+					value={m.numberOfMP()}
 					anchor="center"
 					class="text-[#E8845A]  text-[0.6rem] font-mono font-medium"
 				></Text>

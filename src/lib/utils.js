@@ -5,6 +5,8 @@ import country from '../lib/data/india_ls_seats_545.json';
 import { goto } from '$app/navigation';
 import { geoContains, range } from 'd3';
 import { partyColors } from './colors';
+import { get, readable, writable } from 'svelte/store';
+import { onSetLanguageTag } from '../paraglide/runtime';
 
 /**
  * Converts a string to a slug by removing spaces and special characters.
@@ -196,3 +198,9 @@ export function getPartyColor(candidateParty, type = 'fullName') {
 export function formatTextForHighlight(text) {
 	return '#:~:text=' + encodeURIComponent(text);
 }
+
+// Create the language store
+export const lang = readable('en', (set) => {
+	onSetLanguageTag(set);
+});
+

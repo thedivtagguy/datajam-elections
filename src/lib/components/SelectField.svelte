@@ -5,7 +5,7 @@
 	import { mdiCrosshairsGps, mdiFilterRemove } from '@mdi/js';
 	import { slugify, setConstituency, setCandidate, locateMe } from '$lib/utils';
 	import { selectedCandidate, selectedConstituency, searchMode } from '$lib/store';
-
+	import * as m from "$msgs";
 	$: searchType = $searchMode;
 
 	let filteredData = data.filter((item) => item.total_assets !== undefined);
@@ -51,7 +51,7 @@
 </script>
 
 <div
-	class="sticky flex items-center justify-center w-full max-w-sm pt-2 mx-auto top-2 md:max-w-xl md:w-full search-container"
+	class="sticky flex items-center justify-center w-fit max-w-sm pt-2 mx-auto top-2 md:max-w-xl md:w-full search-container"
 >
 	<Typeahead
 		value={$selectedConstituency.ls_seat_name ? $selectedConstituency.ls_seat_name : ''}
@@ -77,7 +77,7 @@
 			icon={mdiCrosshairsGps}
 			classes={{ root: ' bg-[#E6E6E6] ' }}
 		>
-			Locate me
+			{m.locateMe()}
 		</Button>
 	</div>
 </div>

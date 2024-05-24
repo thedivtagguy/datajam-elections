@@ -3,12 +3,13 @@
 	import { setConstituency } from '$lib/utils';
 	import data from '$lib/data/data.json';
 	import InfoPopover from '$lib/components/InfoPopover.svelte';
+	import * as m from "$msgs";
 </script>
 
 <section class="self-start w-full pt-2 pl-4 mx-2 mt-1 mb-4 md:pl-0 md:mx-0">
 	<h2 class="inline-flex items-center font-bold text-neutral">
-		Browse MPs recontesting in 2024 <InfoPopover
-			text="List including only individuals who filed affidavits as of April 24th, 2024"
+		{m.browseMP2024()} <InfoPopover
+			text={m.listOfAffidavitsApril24()}
 		/>
 	</h2>
 	<div

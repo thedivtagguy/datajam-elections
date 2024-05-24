@@ -2,6 +2,7 @@
 	import { formatRupee } from '$lib/utils';
 
 	import GenericField from './GenericField.svelte';
+	import * as m from "$msgs";
 	export let criminalCases;
 	export let assets = 0;
 	export let currentAssets;
@@ -15,41 +16,28 @@
 	<GenericField
 		title={`${
 			Number(caseCount) === 0
-				? 'Criminal Cases'
+				? m.criminalCases()
 				: caseCount > 1
-					? 'Criminal Cases'
-					: 'Criminal Case'
+					? m.criminalCases()
+					: m.criminalCase()
 		}`}
 		value={caseCount}
-		infoPopOverText={'Criminal cases on record'}
+		infoPopOverText={m.criminalCasesRecord()}
 		cols={2}
 	/>
 	<GenericField
-		title={'Assets (2019)'}
-		infoPopOverText={'Assets declared by the candidate in 2019'}
+		title={m.assets2019()}
+		infoPopOverText={m.assetsDeclared2019()}
 		value={formatRupee(assets)}
 		cols={2}
 	/>
 
 	{#if currentAssets}
 		<GenericField
-			title={'Assets (2024)'}
-			infoPopOverText={'Assets declared by the candidate in 2024'}
+			title={m.assets2024()}
+			infoPopOverText={m.assetsDeclared2024()}
 			value={formatRupee(currentAssets)}
 			cols={2}
 		/>
 	{/if}
 </div>
-<!-- <div class="flex justify-start w-2/5 gap-4 py-4 md:flex-row">
-	<GenericField
-		title={`${
-			Number(caseCount) === 0
-				? 'Criminal Cases'
-				: caseCount > 1
-					? 'Criminal Cases'
-					: 'Criminal Case'
-		}`}
-		value={caseCount}
-		infoPopOverText={'Criminal cases on record'}
-	/>
-</div> -->

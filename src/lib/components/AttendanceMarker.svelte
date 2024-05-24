@@ -1,7 +1,7 @@
 <script>
 	import { interpolateRound } from 'd3';
 	import { tweened } from 'svelte/motion';
-
+	import * as m from "$msgs";
 	export let value;
 	export let cols = 1;
 
@@ -20,7 +20,7 @@
 </script>
 
 <div bind:clientWidth={width} class="flex flex-col col-span-{cols} gap-1 pb-2">
-	<span class="inline-flex items-end justify-start font-bold">Attendance</span>
+	<span class="inline-flex items-end justify-start font-bold">{m.attendance()}</span>
 	<svg {width} class="max-w-[12rem]" height={28}>
 		<rect y={2} x={0} {width} height="100%" class="fill-[#d1d5db]" />
 

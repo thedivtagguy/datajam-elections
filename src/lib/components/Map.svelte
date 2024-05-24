@@ -20,6 +20,7 @@
 	import ToggleMap from './ToggleMap.svelte';
 	import { slide } from 'svelte/transition';
 	import statesIndia from '$lib/data/states_india.json';
+	import * as m from "$msgs";
 
 	let hovered = null;
 	const states = feature(country, country.objects.india_ls_seats_545);
@@ -33,13 +34,13 @@
 		all: {
 			key: 'all',
 			type: 'all',
-			label: 'All',
+			label: m.all(),
 			color: 'bg-surface-100',
 			text: 'black'
 		},
 		assets: {
 			key: 'total_assets',
-			label: 'Declared Assets',
+			label: m.declaredAssets(),
 			type: 'number',
 			scheme: schemeOrRd[7],
 			color: 'bg-orangePrimary',
@@ -49,7 +50,7 @@
 		criminalCases: {
 			key: 'criminal_cases',
 			type: 'number',
-			label: 'Criminal Cases',
+			label: m.criminalCases(),
 			scheme: schemeBlues[7],
 			color: 'bg-bluePrimary',
 			text: 'white',
@@ -59,7 +60,7 @@
 		attendance: {
 			key: 'attendance',
 			type: 'number',
-			label: 'Attendance',
+			label: m.attendance(),
 			scheme: schemeGreens[5],
 			color: 'bg-sagePrimary',
 			text: 'white',
@@ -68,7 +69,7 @@
 		education: {
 			key: 'education_x',
 			type: 'categorical',
-			label: 'Education',
+			label: m.education(),
 			color: 'bg-yellowPrimary',
 			text: 'black'
 		}
@@ -79,14 +80,14 @@
 	let attendanceScale;
 
 	const educationLevels = [
-		'Others',
+		m.others(),
 
-		'10th Pass',
-		'12th Pass',
-		'Graduate',
+		m.tenthPass(),
+		m.twelfthPass(),
+		m.graduate(),
 		// 'Graduate Professional',
-		'Post Graduate',
-		'Doctorate'
+		m.postGraduate(),
+		m.doctorate()
 	];
 
 	$: if (selectedCategory.key === 'total_assets') {

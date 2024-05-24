@@ -3,6 +3,7 @@
 	import data from '$lib/data/data.json';
 	import { formatRupee, textMultiline } from '$lib/utils';
 	import InfoPopover from './InfoPopover.svelte';
+	import * as m from "$msgs";
 	export let assets = 0;
 	export let threshold = 10;
 
@@ -30,7 +31,7 @@
 <div bind:this={width} class="w-full pb-4 mb-2 border-b-[1px]">
 	<span class="inline-flex items-center font-bold"
 		>Relative wealth
-		<InfoPopover text="The wealth of the candidate relative to other candidates in the dataset." />
+		<InfoPopover text={m.candidateRelativeWealth()} />
 	</span>
 	<svg width={svgWidth} class="w-full pt-2 h-[75px]">
 		<line y1={center} y2={center} x1={xScale(min)} x2={xScale(max)} class=" stroke-neutral-500" />
@@ -122,7 +123,7 @@
 				class="text-xs marker text-neutral-500"
 			>
 				<tspan x={xScale(assets) >= 470 ? 320 : xScale(assets)} dy="0.2em">
-					{assets < q1 ? 'Lower' : assets < median ? 'Average' : assets < q3 ? 'Upper' : 'Top'}
+					{assets < q1 ? m.lower() : assets < median ? m.average() : assets < q3 ? m.upper() : m.top()}
 				</tspan>
 				<tspan x={xScale(assets) >= 470 ? 320 : xScale(assets)} dy="1.2em"> wealth range </tspan>
 			</text>
